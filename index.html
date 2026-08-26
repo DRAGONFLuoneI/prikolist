@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b14">
+
+<title>ПРИКОЛЬНИСЬ — центр бесполезных развлечений</title>
+
+<style>
+:root{
+  --bg:#cccccc;
+  --panel:#a3a3a3;
+  --panel2:#acacac;
+  --line:rgba(146, 146, 146, 0.09);
+  --text:#f8fafc;
+  --muted:#8991a7;
+  --purple:#f6f5fa;
+  --pink:#ff4141;
+  --cyan:#22d3ee;
+  --green:#22c55e;
+  --yellow:#facc15;
+  --red:#fb7185;
+  --shadow:0 18px 60px rgba(185, 185, 185, 0.712);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 0%,rgba(189, 189, 190, 0.719),transparent 28%),
+    radial-gradient(circle at 90% 10%,rgba(240, 51, 51, 0.568),transparent 25%),
+    var(--bg);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  cursor:not-allowed;
+  opacity:.5;
+}
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+/* HEADER */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(18px);
+  background:rgba(248, 146, 160, 0.78);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  border:0;
+  background:none;
+  color:white;
+  font-size:20px;
+  font-weight:950;
+  letter-spacing:-.7px;
+  padding:0;
+}
+
+.logo span{
+  color:var(--cyan);
+}
+
+.nav-actions{
+  display:flex;
+  gap:8px;
+}
+
+/* BUTTONS */
+
+.btn{
+  border:1px solid var(--line);
+  color:white;
+  background:#a7a7a8;
+  border-radius:12px;
+  padding:11px 15px;
+  font-weight:750;
+  transition:
+    transform .16s ease,
+    background-color .16s ease,
+    border-color .16s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(255, 156, 156, 0.568);
+  background:#c7c7c7;
+}
+
+.btn:active{
+  transform:translateY(0) scale(.98);
+}
+
+.btn-primary{
+  border:0;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  box-shadow:0 10px 30px rgba(163, 163, 163, 0.685);
+}
+
+.btn-green{
+  background:rgba(34,197,94,.12);
+  border-color:rgba(34,197,94,.3);
+}
+
+.btn-red{
+  background:rgba(251,113,133,.1);
+  border-color:rgba(251,113,133,.25);
+}
+
+/* HERO */
+
+.hero{
+  padding:95px 0 55px;
+  text-align:center;
+}
+
+.badge{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  color:#d8d2ff;
+  background:rgba(139,92,246,.11);
+  border:1px solid rgba(139,92,246,.25);
+  font-size:13px;
+  font-weight:800;
+}
+
+.hero h1{
+  margin:24px auto 18px;
+  max-width:900px;
+  font-size:clamp(48px,8vw,92px);
+  line-height:.92;
+  letter-spacing:-5px;
+  font-weight:1000;
+  background:linear-gradient(
+    100deg,
+    var(--cyan),
+    #fff,
+    var(--pink),
+    var(--purple)
+  );
+  background-size:250%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:gradient 8s ease infinite;
+}
+
+.hero p{
+  max-width:680px;
+  margin:0 auto 30px;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:17px;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:60px;
+}
+
+.stat{
+  padding:20px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+
+.stat strong{
+  display:block;
+  font-size:27px;
+  margin-bottom:4px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* SECTIONS */
+
+.section{
+  padding:45px 0;
+}
+
+.section-heading{
+  margin-bottom:24px;
+}
+
+.section-heading h2{
+  margin:0 0 7px;
+  font-size:32px;
+  letter-spacing:-1px;
+}
+
+.section-heading p{
+  margin:0;
+  color:var(--muted);
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.card{
+  min-width:0;
+  padding:23px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.02)
+    );
+  border-radius:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.08);
+}
+
+.card-wide{
+  grid-column:span 2;
+}
+
+.icon{
+  font-size:34px;
+  margin-bottom:12px;
+}
+
+.card h3{
+  margin:0 0 7px;
+  font-size:20px;
+}
+
+.card-description{
+  margin:0 0 18px;
+  color:var(--muted);
+  line-height:1.5;
+  font-size:14px;
+}
+
+/* FORM */
+
+.field{
+  width:100%;
+  color:rgb(223, 198, 198);
+  background:#dfdfdf;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:12px 13px;
+  outline:none;
+  margin-bottom:9px;
+}
+
+.field:focus{
+  border-color:rgba(255, 255, 255, 0.7);
+  box-shadow:0 0 0 3px rgba(255, 51, 36, 0.829);
+}
+
+.row{
+  display:flex;
+  gap:9px;
+}
+
+.row > *{
+  flex:1;
+}
+
+.result{
+  margin-top:12px;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  padding:11px 13px;
+  border-radius:11px;
+  background:#fd43438a;
+  border:1px solid rgb(255, 0, 0);
+  color:#dce5ff;
+  line-height:1.45;
+}
+
+/* RANDOM */
+
+.random-result{
+  min-height:90px;
+  font-size:16px;
+}
+
+/* COMPATIBILITY */
+
+.compatibility-score{
+  text-align:center;
+  font-size:42px;
+  font-weight:950;
+  padding:15px;
+}
+
+.progress{
+  height:9px;
+  background:#090c14;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+  transition:width .7s cubic-bezier(.2,.8,.2,1);
+}
+
+/* QUIZ */
+
+.quiz-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:13px;
+}
+
+.quiz-progress{
+  height:7px;
+  background:#080b13;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.quiz-progress div{
+  height:100%;
+  width:0;
+  background:var(--cyan);
+  transition:width .3s ease;
+}
+
+.quiz-question{
+  font-size:21px;
+  font-weight:850;
+  line-height:1.3;
+  margin:18px 0;
+}
+
+.quiz-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.quiz-option{
+  text-align:left;
+  border:1px solid var(--line);
+  background:#9c9c9c;
+  color:white;
+  border-radius:12px;
+  padding:13px;
+  transition:.15s ease;
+}
+
+.quiz-option:hover{
+  transform:translateY(-2px);
+  border-color:rgba(34,211,238,.35);
+  background:#151b2c;
+}
+
+.quiz-option.correct{
+  background:rgba(34,197,94,.13);
+  border-color:rgba(34,197,94,.5);
+}
+
+.quiz-option.wrong{
+  background:rgba(251,113,133,.13);
+  border-color:rgba(251,113,133,.5);
+}
+
+.quiz-feedback{
+  min-height:25px;
+  margin-top:13px;
+  color:var(--muted);
+}
+
+/* SOUNDBOARD - НОВЫЙ СТИЛЬ */
+
+.sound-panel{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.sound-btn{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:rgba(255,255,255,.05);
+  color:white;
+  padding:18px 12px;
+  font-size:14px;
+  font-weight:600;
+  text-align:center;
+  overflow:hidden;
+  transition:all .2s ease;
+  font-family:inherit;
+}
+
+.sound-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(34,211,238,.35);
+  background:rgba(255,255,255,.12);
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+.sound-btn:active{
+  transform:translateY(1px) scale(.97);
+}
+
+.sound-btn .emoji{
+  display:block;
+  font-size:28px;
+  margin-bottom:5px;
+}
+
+.sound-btn .label{
+  display:block;
+  font-size:13px;
+  opacity:.9;
+}
+
+.sound-btn small{
+  color:var(--muted);
+  font-size:10px;
+  opacity:.6;
+}
+
+.sound-btn.playing{
+  animation:soundPulse .3s ease;
+  background:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.3);
+}
+
+@keyframes soundPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(.92)}
+}
+
+/* HACKER */
+
+.terminal{
+  height:200px;
+  overflow:auto;
+  padding:15px;
+  background:#030605;
+  border:1px solid rgba(34,197,94,.35);
+  color:#4ade80;
+  border-radius:12px;
+  font:12px/1.7 "Courier New",monospace;
+}
+
+.terminal::-webkit-scrollbar{
+  width:5px;
+}
+
+.terminal::-webkit-scrollbar-thumb{
+  background:#14532d;
+}
+
+/* DON'T TOUCH */
+
+.dont-area{
+  position:relative;
+  height:150px;
+  overflow:hidden;
+  border-radius:14px;
+  background:#ff9393;
+  border:1px solid var(--line);
+}
+
+.runaway{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+}
+
+/* CHAOS */
+
+.chaos-stage{
+  min-height:190px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:#0a0d16;
+  border-radius:14px;
+  border:1px solid var(--line);
+}
+
+.chaos-stage.active{
+  animation:subtleChaos 1.2s infinite;
+}
+
+.chaos-stage.active::before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(139,92,246,.12),
+      rgba(236,72,153,.1),
+      rgba(34,211,238,.12),
+      rgba(139,92,246,.12)
+    );
+  animation:spin 4s linear infinite;
+}
+
+.chaos-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+/* MEME */
+
+.meme{
+  min-height:160px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  border-radius:14px;
+  background:linear-gradient(135deg,#a3a3a3,#ff655a);
+}
+chat-
+.meme-emoji{
+  font-size:65px;
+}
+
+.meme-text{
+  max-width:300px;
+  margin-top:10px;
+  line-height:1.4;
+}
+
+/* CHAT */
+
+.chat-window{
+  height:190px;
+  overflow:auto;
+  padding:12px;
+  background:#dadada;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+
+.message{
+  max-width:85%;
+  padding:9px 11px;
+  margin-bottom:8px;
+  border-radius:11px;
+  background:#929292;
+  font-size:13px;
+}
+
+.message.me{
+  margin-left:auto;
+  background:#37226b;
+}
+dont-
+.message small{
+  display:block;
+  color:#f4f5f7;
+  margin-bottom:3px;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.achievement{
+  padding:17px;
+  background:#10131f;
+  border:1px solid var(--line);
+  border-radius:15px;
+  opacity:.4;
+}
+
+.achievement.unlocked{
+  opacity:1;
+  border-color:rgba(250,204,21,.35);
+  box-shadow:0 0 30px rgba(250,204,21,.05);
+}
+
+.achievement strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.achievement span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:50px;
+  padding:45px 0;
+  color:var(--muted);
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+
+/* TOAST */
+
+.toast-container{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  pointer-events:none;
+}
+
+.toast{
+  width:min(350px,calc(100vw - 36px));
+  padding:13px 15px;
+  background:#171b2a;
+  border:1px solid var(--line);
+  border-radius:13px;
+  box-shadow:var(--shadow);
+  animation:toastIn .25s ease forwards;
+}
+
+.toast.success{
+  border-color:rgba(34,197,94,.35);
+}
+
+.toast.warning{
+  border-color:rgba(250,204,21,.35);
+}
+
+/* MODAL */
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(7px);
+}
+
+.modal-backdrop.open{
+  display:grid;
+}
+
+.modal{
+  width:min(500px,100%);
+  padding:25px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:#111522;
+  box-shadow:var(--shadow);
+  animation:modalIn .22s ease;
+}
+
+.modal h3{
+  margin-top:0;
+  font-size:26px;
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:20px;
+}
+
+/* CONFETTI */
+
+.confetti{
+  position:fixed;
+  z-index:9000;
+  width:8px;
+  height:14px;
+  top:-20px;
+  pointer-events:none;
+  animation:fall 2.8s linear forwards;
+}
+
+/* ANIMATIONS */
+
+@keyframes gradient{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+
+@keyframes toastIn{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:.2;
+  }
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes subtleChaos{
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(.4deg)}
+  50%{transform:rotate(-.4deg)}
+  75%{transform:rotate(.25deg)}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .card-wide{
+    grid-column:span 2;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .achievements{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:650px){
+  .hero{
+    padding-top:65px;
+  }
+
+  .hero h1{
+    letter-spacing:-3px;
+  }
+
+  .grid,
+  .stats,
+  .achievements{
+    grid-template-columns:1fr;
+  }
+
+  .card-wide{
+    grid-column:span 1;
+  }
+
+  .quiz-options{
+    grid-template-columns:1fr;
+  }
+
+  .sound-panel{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .nav-actions .btn:first-child{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+
+    <button class="logo" id="logo">
+      Toro приветствует вас на бесполезном сайте
+    </button>
+
+    <div class="nav-actions">
+      <button class="btn" onclick="scrollToTools()">
+        🧰 Фичи
+      </button>
+
+      <button class="btn btn-primary" onclick="randomPrank()">
+        🎲 Случайный прикол
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="container">
+    <h1>
+      ТУТ НЕТ<br>
+      НИЧЕГО<br>
+      ПОЛЕЗНОГО
+    </h1>
+
+    <p>
+      Генераторы, тесты, мини-игры, звуки, достижения,
+      режим хаоса и другие причины не делать работу.
+    </p>
+
+    <button class="btn btn-primary" onclick="randomPrank()">
+      🎲 ЧТО-НИБУДЬ СЛУЧАЙНОЕ
+    </button>
+
+  </div>
+</section>
+
+
+<!-- STATS -->
+
+<section>
+<div class="container">
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong id="statClicks">0</strong>
+      <span>кликов</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statPranks">0</strong>
+      <span>приколов запущено</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statQuiz">0</strong>
+      <span>правильных ответов</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statAchievements">0/8</strong>
+      <span>достижений</span>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+
+<!-- TOOLS -->
+
+<section class="section" id="tools">
+<div class="container">
+
+<div class="section-heading">
+  <h2>🔥 Развлекательный арсенал</h2>
+  <p>Теперь здесь не просто кнопки — у каждой фичи есть нормальная механика.</p>
+</div>
+
+
+<div class="grid">
+
+
+<!-- RANDOM JOKE -->
+
+<article class="card">
+
+  <div class="icon">🎰</div>
+
+  <h3>Генератор приколов</h3>
+
+  <p class="card-description">
+    Несколько категорий и десятки вариантов.
+  </p>
+
+  <select class="field" id="jokeCategory">
+    <option value="all">🎲 Всё подряд</option>
+    <option value="future">🔮 Предсказание</option>
+    <option value="insult">🤡 Лёгкий подъёб</option>
+    <option value="achievement">🏆 Достижение</option>
+    <option value="absurd">🗿 Абсурд</option>
+  </select>
+
+  <button class="btn btn-primary" onclick="generateJoke()">
+    Сгенерировать
+  </button>
+
+  <div class="result random-result" id="jokeResult">
+    Нажми кнопку — посмотрим, насколько это бессмысленно.
+  </div>
+
+</article>
+
+
+<!-- PREDICTION -->
+
+<article class="card">
+
+  <div class="icon">🔮</div>
+
+  <h3>Предсказатель</h3>
+
+  <p class="card-description">
+    Укажи имя, настроение и сферу предсказания.
+  </p>
+
+  <input class="field" id="predictionName" placeholder="Имя">
+
+  <div class="row">
+
+    <select class="field" id="predictionMood">
+      <option value="normal">🙂 Нормально</option>
+      <option value="chaos">🌀 Хаос</option>
+      <option value="positive">✨ Позитив</option>
+    </select>
+
+    <select class="field" id="predictionTopic">
+      <option value="general">🎲 Всё</option>
+      <option value="love">❤️ Любовь</option>
+      <option value="work">💼 Работа</option>
+      <option value="money">💰 Деньги</option>
+      <option value="gaming">🎮 Игры</option>
+    </select>
+
+  </div>
+
+  <button class="btn btn-primary" onclick="makePrediction()">
+    Узнать будущее
+  </button>
+
+  <div class="result" id="predictionResult">
+    🔮 Будущее пока скрыто.
+  </div>
+
+</article>
+
+
+<!-- COMPATIBILITY -->
+
+<article class="card">
+
+  <div class="icon">❤️</div>
+
+  <h3>Калькулятор совместимости</h3>
+
+  <p class="card-description">
+    Шуточный детерминированный алгоритм.
+    Для одинаковых имён результат одинаковый.
+  </p>
+
+  <input class="field" id="personA" placeholder="Имя первого человека">
+
+  <input class="field" id="personB" placeholder="Имя второго человека">
+
+  <button class="btn btn-primary" onclick="calculateCompatibility()">
+    Проверить
+  </button>
+
+  <div class="compatibility-score" id="compatibilityScore">
+    —%
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="compatibilityBar"></div>
+  </div>
+
+  <div class="result" id="compatibilityText">
+    Введите два имени.
+  </div>
+
+</article>
+
+
+<!-- QUIZ -->
+
+<article class="card card-wide">
+
+  <div class="icon">🧠</div>
+
+  <div class="quiz-top">
+
+    <div>
+      <h3>Нормальный тест IQ</h3>
+      <p class="card-description" style="margin:5px 0 0">
+        10 вопросов · 5 вариантов · один правильный ответ.
+      </p>
+    </div>
+
+    <strong id="quizCounter">1 / 10</strong>
+
+  </div>
+
+  <div class="quiz-progress">
+    <div id="quizProgress"></div>
+  </div>
+
+  <div class="quiz-question" id="quizQuestion">
+    Загрузка вопроса...
+  </div>
+
+  <div class="quiz-options" id="quizOptions"></div>
+
+  <div class="quiz-feedback" id="quizFeedback"></div>
+
+  <button
+    class="btn"
+    id="quizNext"
+    onclick="nextQuestion()"
+    disabled
+  >
+    Следующий вопрос →
+  </button>
+
+</article>
+
+
+<!-- SOUNDBOARD - НОВАЯ ВЕРСИЯ -->
+
+<article class="card card-wide">
+
+  <div class="icon">🔊</div>
+
+  <h3>Soundboard</h3>
+
+  <p class="card-description">
+    Вставь пути к своим MP3-файлам в объект <b>SOUNDS</b>.
+    Если путь пустой — используется встроенный fallback.
+  </p>
+
+  <div class="sound-panel" id="soundPanel"></div>
+
+</article>
+
+
+<!-- HACKER -->
+
+<article class="card">
+
+  <div class="icon">💻</div>
+
+  <h3>Hacker Simulator</h3>
+
+  <p class="card-description">
+    Никакого реального взлома. Только красивый терминал.
+  </p>
+
+  <div class="terminal" id="terminal">
+
+    <div>> SYSTEM READY</div>
+    <div>> WAITING FOR USER...</div>
+
+  </div>
+
+  <button
+    class="btn btn-green"
+    style="margin-top:10px"
+    onclick="startHack()"
+  >
+    Запустить симуляцию
+  </button>
+
+</article>
+
+
+<!-- MEME -->
+
+<article class="card">
+
+  <div class="icon">😂</div>
+
+  <h3>Мем дня</h3>
+
+  <p class="card-description">
+    Генератор ситуаций, которые почему-то знакомы.
+  </p>
+
+  <div class="meme">
+
+    <div class="meme-emoji" id="memeEmoji">
+      🗿
+    </div>
+
+    <div class="meme-text" id="memeText">
+      Когда решил лечь спать пораньше.
+    </div>
+
+  </div>
+
+  <button
+    class="btn"
+    style="margin-top:10px"
+    onclick="newMeme()"
+  >
+    😂 Следующий
+  </button>
+
+</article>
+
+
+<!-- CHAT -->
+
+<article class="card">
+
+  <div class="icon">💬</div>
+
+  <h3>Мини-переписка</h3>
+
+  <p class="card-description">
+    Шуточная локальная переписка. Никаких реальных сообщений.
+  </p>
+
+  <div class="chat-window" id="chatWindow">
+
+    <div class="message">
+      <small>Система</small>
+      Напиши что-нибудь.
+    </div>
+
+  </div>
+
+  <div class="row" style="margin-top:9px">
+
+    <input
+      class="field"
+      id="chatInput"
+      placeholder="Сообщение..."
+      onkeydown="if(event.key==='Enter')sendChat()"
+    >
+
+    <button class="btn btn-primary" onclick="sendChat()">
+      →
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- DON'T TOUCH -->
+
+<article class="card">
+
+  <div class="icon">🚨</div>
+
+  <h3>Кнопка, которая убегает</h3>
+
+  <p class="card-description">
+    Не нужно ловить её курсором. Она знает твои намерения.
+  </p>
+
+  <div class="dont-area" id="dontArea">
+
+    <button
+      class="btn btn-red runaway"
+      id="runawayButton"
+      onmouseenter="escapeButton()"
+      onclick="catchButton()"
+    >
+      ПОЙМАТЬ
+    </button>
+
+  </div>
+
+  <div class="result" id="runawayResult">
+    Попыток: 0
+  </div>
+
+</article>
+
+
+<!-- CHAOS -->
+
+<article class="card">
+
+  <div class="icon">🌀</div>
+
+  <h3>Контролируемый хаос</h3>
+
+  <p class="card-description">
+    Никакого трясящегося всего сайта. Только отдельная зона.
+  </p>
+
+  <div class="chaos-stage" id="chaosStage">
+
+    <div class="chaos-content">
+
+      <strong id="chaosTitle">
+        Система стабильна
+      </strong>
+
+      <div
+        style="color:var(--muted);margin-top:5px"
+        id="chaosStatus"
+      >
+        Всё под контролем.
+      </div>
+
+    </div>
+
+  </div>
+
+  <button
+    class="btn"
+    style="margin-top:10px"
+    id="chaosButton"
+    onclick="toggleChaos()"
+  >
+    🌀 Включить
+  </button>
+
+</article>
+
+
+<!-- CAT -->
+
+<article class="card">
+
+  <div class="icon">🐱</div>
+
+  <h3>Котогенератор</h3>
+
+  <p class="card-description">
+    Генерирует случайную комбинацию кота и его должности.
+  </p>
+
+  <div class="result" id="catResult">
+    🐱 Пока здесь никого нет.
+  </div>
+
+  <button class="btn btn-primary" onclick="generateCat()">
+    Выпустить кота
+  </button>
+
+</article>
+
+
+<!-- RANDOM EVENT -->
+
+<article class="card">
+
+  <div class="icon">🎲</div>
+
+  <h3>Случайное событие</h3>
+
+  <p class="card-description">
+    Нажми и получи мини-задание.
+  </p>
+
+  <div class="result random-result" id="challengeResult">
+    Твоё задание ещё не определено.
+  </div>
+
+  <button class="btn" onclick="newChallenge()">
+    Получить задание
+  </button>
+
+</article>
+
+
+</div>
+</div>
+</section>
+
+
+<!-- ACHIEVEMENTS -->
+
+<section class="section">
+<div class="container">
+
+<div class="section-heading">
+  <h2>🏆 Достижения</h2>
+  <p>Они сохраняются в браузере.</p>
+</div>
+
+<div class="achievements">
+
+  <div class="achievement" id="achievement-first">
+    <strong>👋 Первый шаг</strong>
+    <span>Сделать первый клик.</span>
+  </div>
+
+  <div class="achievement" id="achievement-quiz">
+    <strong>🧠 Мозг работает</strong>
+    <span>Ответить правильно на вопрос.</span>
+  </div>
+
+  <div class="achievement" id="achievement-quiz5">
+    <strong>🎓 Отличник</strong>
+    <span>Набрать 5 правильных ответов.</span>
+  </div>
+
+  <div class="achievement" id="achievement-sound">
+    <strong>🔊 DJ</strong>
+    <span>Запустить звук.</span>
+  </div>
+
+  <div class="achievement" id="achievement-chaos">
+    <strong>🌀 Хаос</strong>
+    <span>Включить режим хаоса.</span>
+  </div>
+
+  <div class="achievement" id="achievement-cat">
+    <strong>🐱 Котолюб</strong>
+    <span>Выпустить кота.</span>
+  </div>
+
+  <div class="achievement" id="achievement-10">
+    <strong>🔟 Десятка</strong>
+    <span>Сделать 10 кликов.</span>
+  </div>
+
+  <div class="achievement" id="achievement-50">
+    <strong>💀 Безнадёжный</strong>
+    <span>Сделать 50 кликов.</span>
+  </div>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    ПРИКОЛЬНИСЬ 😂 · Никакой пользы. Только интерактив.
+  </div>
+</footer>
+
+
+<!-- TOASTS -->
+
+<div class="toast-container" id="toastContainer"></div>
+
+
+<!-- MODAL -->
+
+<div class="modal-backdrop" id="modalBackdrop">
+
+  <div class="modal">
+
+    <h3 id="modalTitle">Прикол</h3>
+
+    <p id="modalText" style="color:var(--muted);line-height:1.6">
+      ...
+    </p>
+
+    <div class="modal-actions">
+
+      <button
+        class="btn"
+        onclick="closeModal()"
+      >
+        Закрыть
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="randomPrank();closeModal()"
+      >
+        Ещё один
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SOUNDBOARD — БЕЗ ОШИБОК
+========================================================= */
+
+const SOUNDS = {
+  boom: 'sounds/vystrel-vystrel_HtHCfaH.mp3',
+  bruh: 'sounds/discord-call-sound.mp3',
+  error: 'sounds/discord-notification.mp3',
+  laugh: 'sounds/sova-na-skakalke.mp3',
+  clap: 'sounds/telegram-notification.mp3',
+  custom: 'sounds/skrimer-golden-freddi-fnaf-1.mp3'
+};
+
+const EMOJIS = {
+  boom: '💥',
+  bruh: '😐',
+  error: '❌',
+  laugh: '😂',
+  clap: '👏',
+  custom: '🎵'
+};
+
+const LABELS = {
+  boom: 'Boom',
+  bruh: 'Bruh',
+  error: 'Error',
+  laugh: 'Laugh',
+  clap: 'Applause',
+  custom: 'Custom'
+};
+
+const audioCache = {};
+
+function playSound(name) {
+  const path = SOUNDS[name];
+
+  if (path) {
+    if (!audioCache[name]) {
+      audioCache[name] = new Audio(path);
+      audioCache[name].preload = 'auto';
+    }
+
+    const audio = audioCache[name];
+    audio.currentTime = 0;
+
+    // Пробуем воспроизвести
+    const playPromise = audio.play();
+
+    // Если есть ошибка — просто игнорируем
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Абсолютно ничего не делаем
+        // Сообщение НЕ показывается
+      });
+    }
+
+    // Анимация на кнопке
+    const btn = document.querySelector(`[data-sound="${name}"]`);
+    if (btn) {
+      btn.classList.add('playing');
+      setTimeout(() => btn.classList.remove('playing'), 300);
+    }
+
+    unlock('sound');
+    return;
+  }
+
+  fallbackSound(name);
+}
+
+function fallbackSound(name) {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  try {
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
+
+    const settings = {
+      boom: { type: 'sawtooth', start: 110, end: 45, duration: 0.45 },
+      bruh: { type: 'sawtooth', start: 180, end: 80, duration: 0.55 },
+      error: { type: 'square', start: 500, end: 180, duration: 0.3 },
+      laugh: { type: 'triangle', start: 350, end: 700, duration: 0.45 },
+      clap: { type: 'square', start: 900, end: 250, duration: 0.15 },
+      custom: { type: 'sine', start: 700, end: 300, duration: 0.3 }
+    };
+
+    const s = settings[name] || settings.custom;
+    osc.type = s.type;
+    osc.frequency.setValueAtTime(s.start, now);
+    osc.frequency.exponentialRampToValueAtTime(s.end, now + s.duration);
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + s.duration);
+    osc.start(now);
+    osc.stop(now + s.duration);
+  } catch (e) {
+    // Игнорируем
+  }
+}
+
+function createSoundButtons() {
+  const panel = document.getElementById('soundPanel');
+  if (!panel) return;
+
+  panel.innerHTML = '';
+
+  Object.keys(SOUNDS).forEach((name) => {
+    const btn = document.createElement('button');
+    btn.className = 'sound-btn';
+    btn.dataset.sound = name;
+
+    const emoji = EMOJIS[name] || '🔊';
+    const label = LABELS[name] || name;
+
+    btn.innerHTML = `
+      <span class="emoji">${emoji}</span>
+      <span class="label">${label}</span>
+      <small>${SOUNDS[name] ? 'MP3' : 'fallback'}</small>
+    `;
+
+    btn.addEventListener('click', () => {
+      playSound(name);
+    });
+
+    panel.appendChild(btn);
+  });
+}
+
+// Создаём кнопки при загрузке
+document.addEventListener('DOMContentLoaded', createSoundButtons);
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const state = {
+  clicks: Number(localStorage.getItem("prank_clicks") || 0),
+  pranks: Number(localStorage.getItem("prank_count") || 0),
+  quizCorrect: Number(localStorage.getItem("quiz_correct") || 0),
+  achievements: JSON.parse(localStorage.getItem("prank_achievements") || "[]")
+};
+
+
+/* =========================================================
+   BASIC UI
+========================================================= */
+
+function saveState(){
+  localStorage.setItem("prank_clicks", state.clicks);
+  localStorage.setItem("prank_count", state.pranks);
+  localStorage.setItem("quiz_correct", state.quizCorrect);
+  localStorage.setItem("prank_achievements", JSON.stringify(state.achievements));
+  updateStats();
+}
+
+function updateStats(){
+  document.getElementById("statClicks").textContent = state.clicks;
+  document.getElementById("statPranks").textContent = state.pranks;
+  document.getElementById("statQuiz").textContent = state.quizCorrect;
+  document.getElementById("statAchievements").textContent = state.achievements.length + "/8";
+}
+
+updateStats();
+
+
+/* =========================================================
+   CLICK TRACKING
+========================================================= */
+
+document.addEventListener("click", event => {
+  if(event.target.closest("button")){
+    state.clicks++;
+    saveState();
+    unlock("first");
+    if(state.clicks >= 10) unlock("10");
+    if(state.clicks >= 50) unlock("50");
+  }
+});
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(message,type=""){
+  const container = document.getElementById("toastContainer");
+  const element = document.createElement("div");
+  element.className = "toast " + type;
+  element.textContent = message;
+  container.appendChild(element);
+  setTimeout(() => {
+    element.style.opacity = "0";
+    element.style.transform = "translateY(10px)";
+    setTimeout(() => element.remove(), 220);
+  }, 3000);
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
+
+function unlock(id){
+  if(state.achievements.includes(id)) return;
+  state.achievements.push(id);
+  localStorage.setItem("prank_achievements", JSON.stringify(state.achievements));
+  const element = document.getElementById("achievement-" + id);
+  if(element) element.classList.add("unlocked");
+  updateStats();
+  toast("🏆 Новое достижение!", "success");
+}
+
+function loadAchievements(){
+  state.achievements.forEach(id => {
+    const element = document.getElementById("achievement-" + id);
+    if(element) element.classList.add("unlocked");
+  });
+}
+
+loadAchievements();
+
+
+/* =========================================================
+   RANDOM PRANK
+========================================================= */
+
+const prankPool = [
+  { title:"🥔 Поздравляем", text:"Ты официально назначен главным картофелем этого сайта." },
+  { title:"🚨 ВНИМАНИЕ", text:"Система обнаружила подозрительно большое количество кликов." },
+  { title:"🧠 Анализ завершён", text:"Ваш браузер признан виновным в слишком долгом пребывании на этой странице." },
+  { title:"🏆 Достижение", text:"Вы успешно ничего полезного не сделали. Отличная работа." },
+  { title:"🔮 Предсказание", text:"Через несколько минут ты снова нажмёшь какую-нибудь кнопку." },
+  { title:"💀 Ошибка", text:"Серьёзность ошибки: абсолютно отсутствует." },
+  { title:"🐱 Секретная информация", text:"Кот знает, что ты здесь. Не задавай лишних вопросов." },
+  { title:"📊 Статистика", text:"99% посетителей нажимают кнопку. Остальные делают вид, что они взрослые." },
+  { title:"🎮 Системное сообщение", text:"Вы получили +4 к бесполезному опыту." },
+  { title:"🗿 Важное уведомление", text:"Ничего важного. Просто хотел напомнить, что ты молодец." }
+];
+
+function randomPrank(){
+  state.pranks++;
+  saveState();
+  const prank = prankPool[Math.floor(Math.random() * prankPool.length)];
+  openModal(prank.title, prank.text);
+}
+
+
+/* =========================================================
+   JOKE GENERATOR
+========================================================= */
+
+const jokes = {
+  future:[
+    "Через 10 минут ты откроешь холодильник, хотя не голоден.",
+    "Сегодня ты найдёшь потерянную вещь там, где уже искал три раза.",
+    "Завтра ты скажешь «ещё пять минут» минимум четыре раза."
+  ],
+  insult:[
+    "Ты не тормозишь. Ты просто работаешь в энергосберегающем режиме.",
+    "У тебя отличная память. Особенно на вещи, которые лучше было забыть.",
+    "Ты не опоздал. Ты просто пришёл в альтернативное расписание."
+  ],
+  achievement:[
+    "🏆 Ты получил достижение «Нажал кнопку»!",
+    "🏆 Разблокировано: «Потратил время, но красиво».",
+    "🏆 Новое достижение: «Дочитал до этого места»."
+  ],
+  absurd:[
+    "🐢 Учёные подтвердили: черепаха сейчас знает о тебе больше, чем ты думаешь.",
+    "🧀 Сыр отказался комментировать ситуацию.",
+    "🗿 Статуя смотрит на тебя и делает выводы.",
+    "🥔 Картошка одобряет твой выбор."
+  ]
+};
+
+function generateJoke(){
+  const category = document.getElementById("jokeCategory").value;
+  let pool = [];
+  if(category === "all"){
+    Object.values(jokes).forEach(group => pool.push(...group));
+  }else{
+    pool = jokes[category];
+  }
+  const result = pool[Math.floor(Math.random() * pool.length)];
+  document.getElementById("jokeResult").textContent = result;
+}
+
+
+/* =========================================================
+   PREDICTION
+========================================================= */
+
+const predictions = {
+  general:[
+    "сегодня произойдёт что-то максимально обычное, но ты всё равно это запомнишь.",
+    "ты случайно увидишь мем, который слишком точно описывает твою жизнь.",
+    "ты снова будешь искать телефон, пока он лежит рядом."
+  ],
+  love:[
+    "кто-то сегодня улыбнётся тебе без причины.",
+    "тебя ждёт романтическая ситуация, но сначала придётся выйти из дома.",
+    "сегодня любовь будет где-то рядом. Возможно, в комментариях."
+  ],
+  work:[
+    "ты выполнишь задачу быстрее, чем ожидал.",
+    "кто-то скажет «маленькая задачка», и ты будешь знать, что это ложь.",
+    "тебе сегодня понадобится кофе."
+  ],
+  money:[
+    "ты найдёшь деньги, но потратишь их на что-то ненужное.",
+    "сегодня лучше не заходить в магазин «просто посмотреть».",
+    "финансовая стабильность будет стабильной. В каком-то смысле."
+  ],
+  gaming:[
+    "сегодня тебя ждёт эпическая победа. Или очень эпический rage quit.",
+    "ты скажешь «последняя катка» и сам себе не поверишь.",
+    "твой главный противник сегодня — интернет."
+  ]
+};
+
+function makePrediction(){
+  const name = document.getElementById("predictionName").value.trim() || "Таинственный человек";
+  const mood = document.getElementById("predictionMood").value;
+  const topic = document.getElementById("predictionTopic").value;
+  let result = predictions[topic][Math.floor(Math.random() * predictions[topic].length)];
+  if(mood === "chaos") result += " И, возможно, рядом внезапно появится кот.";
+  if(mood === "positive") result += " ✨ В целом всё будет хорошо.";
+  document.getElementById("predictionResult").textContent = "🔮 " + name + ": " + result;
+}
+
+
+/* =========================================================
+   COMPATIBILITY
+========================================================= */
+
+function hashString(value){
+  let hash = 0;
+  for(let i = 0; i < value.length; i++){
+    hash = ((hash << 5) - hash) + value.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+function calculateCompatibility(){
+  const a = document.getElementById("personA").value.trim().toLowerCase();
+  const b = document.getElementById("personB").value.trim().toLowerCase();
+  if(!a || !b){
+    toast("Введите оба имени.", "warning");
+    return;
+  }
+  const combined = [a,b].sort().join("|");
+  const score = hashString(combined) % 101;
+  document.getElementById("compatibilityScore").textContent = score + "%";
+  requestAnimationFrame(() => {
+    document.getElementById("compatibilityBar").style.width = score + "%";
+  });
+  let text;
+  if(score >= 90) text = "🔥 Космическое совпадение. Даже алгоритм удивлён.";
+  else if(score >= 75) text = "😍 Очень высокая совместимость.";
+  else if(score >= 60) text = "🙂 Хороший результат. Шансы есть.";
+  else if(score >= 40) text = "😐 Нормально. Не идеально, но жить можно.";
+  else if(score >= 20) text = "😬 Алгоритм предлагает остаться друзьями.";
+  else text = "💀 Лучше не показывать этот результат родителям.";
+  document.getElementById("compatibilityText").textContent = text;
+}
+
+
+/* =========================================================
+   IQ QUIZ
+========================================================= */
+
+const quiz = [
+  { question: "Какое число должно быть следующим: 2, 4, 8, 16, ?", options: ["18","24","32","34","64"], answer: 2, explanation: "Каждое число умножается на 2." },
+  { question: "У Маши 5 яблок. Она отдала 2. Сколько осталось?", options: ["2","3","4","5","7"], answer: 1, explanation: "5 − 2 = 3." },
+  { question: "Какое слово лишнее?", options: ["Квадрат","Треугольник","Круг","Синий","Прямоугольник"], answer: 3, explanation: "Синий — это цвет, остальные варианты являются геометрическими фигурами." },
+  { question: "Если все коты — животные, а Барсик — кот, то Барсик...", options: ["растение","животное","робот","автомобиль","неизвестно"], answer: 1, explanation: "Если Барсик кот, а все коты животные — Барсик животное." },
+  { question: "Продолжи последовательность: 3, 6, 9, 12, ?", options: ["13","14","15","16","18"], answer: 2, explanation: "Каждый раз прибавляется 3." },
+  { question: "Что тяжелее: 1 кг железа или 1 кг ваты?", options: ["Железо","Вата","Одинаково","Зависит от температуры","Невозможно узнать"], answer: 2, explanation: "Оба предмета весят 1 кг." },
+  { question: "Какое число лишнее: 2, 3, 5, 7, 9?", options: ["2","3","5","7","9"], answer: 4, explanation: "9 — единственное составное число в списке." },
+  { question: "Если вчера был понедельник, какой день будет завтра?", options: ["Понедельник","Вторник","Среда","Четверг","Пятница"], answer: 2, explanation: "Если вчера понедельник, сегодня вторник, завтра среда." },
+  { question: "У тебя 10 конфет. Ты съел половину. Сколько осталось?", options: ["2","4","5","6","8"], answer: 2, explanation: "Половина от 10 — это 5." },
+  { question: "Какое число продолжает ряд: 1, 1, 2, 3, 5, 8, ?", options: ["10","11","12","13","15"], answer: 3, explanation: "Каждое следующее число равно сумме двух предыдущих." }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function renderQuiz(){
+  const item = quiz[quizIndex];
+  quizAnswered = false;
+  document.getElementById("quizCounter").textContent = `${quizIndex + 1} / ${quiz.length}`;
+  document.getElementById("quizProgress").style.width = `${(quizIndex / quiz.length) * 100}%`;
+  document.getElementById("quizQuestion").textContent = item.question;
+  document.getElementById("quizFeedback").textContent = "";
+  const container = document.getElementById("quizOptions");
+  container.innerHTML = "";
+  item.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.className = "quiz-option";
+    button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+    button.onclick = () => answerQuiz(index);
+    container.appendChild(button);
+  });
+  document.getElementById("quizNext").disabled = true;
+  document.getElementById("quizNext").textContent = quizIndex === quiz.length - 1 ? "Показать результат" : "Следующий вопрос →";
+}
+
+function answerQuiz(selected){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const item = quiz[quizIndex];
+  const buttons = document.querySelectorAll(".quiz-option");
+  buttons.forEach((button, index) => {
+    button.disabled = true;
+    if(index === item.answer) button.classList.add("correct");
+    if(index === selected && selected !== item.answer) button.classList.add("wrong");
+  });
+  if(selected === item.answer){
+    quizScore++;
+    state.quizCorrect++;
+    saveState();
+    unlock("quiz");
+    if(state.quizCorrect >= 5) unlock("quiz5");
+    document.getElementById("quizFeedback").textContent = "✅ Правильно! " + item.explanation;
+  }else{
+    document.getElementById("quizFeedback").textContent = "❌ Неправильно. " + item.explanation;
+  }
+  document.getElementById("quizNext").disabled = false;
+}
+
+function nextQuestion(){
+  if(!quizAnswered) return;
+  if(quizIndex >= quiz.length - 1){
+    finishQuiz();
+    return;
+  }
+  quizIndex++;
+  renderQuiz();
+}
+
+function finishQuiz(){
+  const percentage = Math.round(quizScore / quiz.length * 100);
+  let title;
+  if(percentage >= 90) title = "🧠 Монстр логики";
+  else if(percentage >= 70) title = "🎓 Очень хорошо";
+  else if(percentage >= 50) title = "🙂 Нормально";
+  else if(percentage >= 30) title = "🤨 Есть над чем работать";
+  else title = "💀 Мозг ушёл в отпуск";
+  document.getElementById("quizQuestion").textContent = `${title}: ${percentage}%`;
+  document.getElementById("quizOptions").innerHTML = `<div class="result">Ты ответил правильно на ${quizScore} из ${quiz.length}.</div>`;
+  document.getElementById("quizFeedback").textContent = "Можно пройти тест ещё раз.";
+  const button = document.getElementById("quizNext");
+  button.disabled = false;
+  button.textContent = "🔄 Пройти заново";
+  button.onclick = restartQuiz;
+}
+
+function restartQuiz(){
+  quizIndex = 0;
+  quizScore = 0;
+  const button = document.getElementById("quizNext");
+  button.onclick = nextQuestion;
+  renderQuiz();
+}
+
+renderQuiz();
+
+
+/* =========================================================
+   HACKER
+========================================================= */
+
+function startHack(){
+  const terminal = document.getElementById("terminal");
+  terminal.innerHTML = "";
+  const lines = [
+    "INITIALIZING SIMULATION...",
+    "CHECKING FIREWALL...",
+    "FIREWALL STATUS: VERY CONFUSED",
+    "CONNECTING TO MAINFRAME...",
+    "DOWNLOADING IMPORTANT FILE...",
+    "FILE IDENTIFIED: cat.jpg",
+    "UPLOADING MEMES...",
+    "MEME TRANSFER: 100%",
+    "ACCESS LEVEL: LEGENDARY",
+    "RESULT: ABSOLUTELY NOTHING WAS HACKED 😂"
+  ];
+  lines.forEach((line, index) => {
+    setTimeout(() => {
+      const div = document.createElement("div");
+      div.textContent = "> " + line;
+      terminal.appendChild(div);
+      terminal.scrollTop = terminal.scrollHeight;
+    }, index * 400);
+  });
+}
+
+
+/* =========================================================
+   MEMES
+========================================================= */
+
+const memes = [
+  ["🗿","Когда сказал «я быстро» и пропал на три часа."],
+  ["🐱","Кот смотрит на тебя, будто именно ты должен платить аренду."],
+  ["💀","Когда отправил сообщение и понял, что ошибся чатом."],
+  ["🤡","Я: сегодня лягу спать раньше. Также я в 04:12:"],
+  ["🫠","Когда открыл холодильник и забыл зачем."],
+  ["🧠","Мозг ночью: помнишь тот кринж из 2014?"],
+  ["😎","Когда сделал вид, что всё было запланировано."],
+  ["🐸","Когда никто не понял шутку, но ты продолжаешь смеяться."],
+  ["🥔","Когда жизнь дала тебе картошку, а ты ожидал диплом."],
+  ["🚪","Когда вышел из комнаты и забыл зачем."]
+];
+
+function newMeme(){
+  const meme = memes[Math.floor(Math.random() * memes.length)];
+  document.getElementById("memeEmoji").textContent = meme[0];
+  document.getElementById("memeText").textContent = meme[1];
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+const replies = [
+  "интересно...",
+  "💀",
+  "Я бы на твоём месте так не делал.",
+  "Это было неожиданно.",
+  "Бро, ты уверен?",
+  "Система записала это в историю.",
+  "Мне кажется, нам нужен кот.",
+  "Очень сильное заявление.",
+  "Понятно. Продолжай.",
+  "Я не знаю, что на это ответить.",
+  "Окей, это уже серьёзно.",
+  "😂"
+];
+
+function sendChat(){
+  const input = document.getElementById("chatInput");
+  const text = input.value.trim();
+  if(!text) return;
+  const windowElement = document.getElementById("chatWindow");
+  const userMessage = document.createElement("div");
+  userMessage.className = "message me";
+  userMessage.innerHTML = `<small>Ты</small>${escapeHTML(text)}`;
+  windowElement.appendChild(userMessage);
+  input.value = "";
+  setTimeout(() => {
+    const reply = document.createElement("div");
+    reply.className = "message";
+    reply.innerHTML = `<small>Собеседник</small>${replies[Math.floor(Math.random() * replies.length)]}`;
+    windowElement.appendChild(reply);
+    windowElement.scrollTop = windowElement.scrollHeight;
+  }, 450);
+}
+
+function escapeHTML(value){
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
+}
+
+
+/* =========================================================
+   RUNAWAY BUTTON
+========================================================= */
+
+let escapeCount = 0;
+
+function escapeButton(){
+  const button = document.getElementById("runawayButton");
+  const area = document.getElementById("dontArea");
+  escapeCount++;
+  const maxX = area.clientWidth - button.offsetWidth - 10;
+  const maxY = area.clientHeight - button.offsetHeight - 10;
+  const x = 10 + Math.random() * Math.max(0, maxX - 10);
+  const y = 10 + Math.random() * Math.max(0, maxY - 10);
+  button.style.left = x + "px";
+  button.style.top = y + "px";
+  button.style.transform = "none";
+  document.getElementById("runawayResult").textContent = "Попыток: " + escapeCount + " · Кнопка тоже хочет жить.";
+  if(escapeCount >= 7) button.textContent = "ЛАДНО, НАЖМИ МЕНЯ";
+}
+
+function catchButton(){
+  const button = document.getElementById("runawayButton");
+  button.textContent = "😱 ПОЙМАЛ";
+  button.disabled = true;
+  document.getElementById("runawayResult").textContent = "Ты победил. Кнопка официально сдалась.";
+  confetti();
+}
+
+
+/* =========================================================
+   CHAOS
+========================================================= */
+
+let chaosEnabled = false;
+
+function toggleChaos(){
+  chaosEnabled = !chaosEnabled;
+  const stage = document.getElementById("chaosStage");
+  const button = document.getElementById("chaosButton");
+  if(chaosEnabled){
+    stage.classList.add("active");
+    document.getElementById("chaosTitle").textContent = "🌀 ХАОС АКТИВЕН";
+    document.getElementById("chaosStatus").textContent = "Но только внутри этой коробки.";
+    button.textContent = "🛑 Выключить";
+    unlock("chaos");
+  }else{
+    stage.classList.remove("active");
+    document.getElementById("chaosTitle").textContent = "Система стабильна";
+    document.getElementById("chaosStatus").textContent = "Всё под контролем.";
+    button.textContent = "🌀 Включить";
+  }
+}
+
+
+/* =========================================================
+   CAT GENERATOR
+========================================================= */
+
+const cats = ["🐱","😺","😸","😹","😻","😼","🙀","😿"];
+const catJobs = [
+  "генеральный директор дивана",
+  "главный специалист по корму",
+  "ночной охранник холодильника",
+  "эксперт по сбрасыванию вещей",
+  "директор по сну",
+  "менеджер по мяуканью",
+  "финансовый аналитик миски",
+  "старший специалист по игнорированию"
+];
+
+function generateCat(){
+  const cat = cats[Math.floor(Math.random() * cats.length)];
+  const job = catJobs[Math.floor(Math.random() * catJobs.length)];
+  document.getElementById("catResult").textContent = `${cat} Новый сотрудник: ${job}.`;
+  unlock("cat");
+}
+
+
+/* =========================================================
+   CHALLENGES
+========================================================= */
+
+const challenges = [
+  "В течение минуты не открывай социальные сети.",
+  "Напиши другу «ты легенда» без объяснения причины.",
+  "Сделай 10 приседаний прямо сейчас.",
+  "Попробуй 30 секунд не смотреть на телефон.",
+  "Найди в комнате предмет, который ты давно не использовал.",
+  "Поставь случайный эмодзи в статус.",
+  "Посмотри в окно и придумай историю про первого человека, которого увидишь.",
+  "Скажи вслух первое слово, которое пришло в голову.",
+  "Закрой этот сайт на 10 секунд. Да, это противоречит его смыслу.",
+  "Сделай комплимент человеку рядом.",
+  "Поменяй обои телефона.",
+  "Встань и потянись 20 секунд."
+];
+
+function newChallenge(){
+  const challenge = challenges[Math.floor(Math.random() * challenges.length)];
+  document.getElementById("challengeResult").textContent = "🎯 " + challenge;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(title,text){
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalText").textContent = text;
+  document.getElementById("modalBackdrop").classList.add("open");
+}
+
+function closeModal(){
+  document.getElementById("modalBackdrop").classList.remove("open");
+}
+
+document.getElementById("modalBackdrop").addEventListener("click", event => {
+  if(event.target.id === "modalBackdrop") closeModal();
+});
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function confetti(){
+  const colors = ["#8b5cf6","#ec4899","#22d3ee","#facc15","#22c55e"];
+  for(let i = 0; i < 70; i++){
+    setTimeout(() => {
+      const element = document.createElement("div");
+      element.className = "confetti";
+      element.style.left = Math.random() * 100 + "vw";
+      element.style.background = colors[Math.floor(Math.random() * colors.length)];
+      element.style.animationDuration = (2 + Math.random() * 2) + "s";
+      document.body.appendChild(element);
+      setTimeout(() => element.remove(), 4500);
+    }, i * 12);
+  }
+}
+
+
+/* =========================================================
+   LOGO EASTER EGG
+========================================================= */
+
+let logoClicks = 0;
+
+document.getElementById("logo").addEventListener("click", () => {
+  logoClicks++;
+  if(logoClicks === 3) toast("👀 Ты что-то подозреваешь?", "warning");
+  if(logoClicks === 5) toast("🤨 Логотип явно тебе нравится.", "warning");
+  if(logoClicks === 10){
+    toast("🥚 Секретная пасхалка!", "success");
+    confetti();
+  }
+});
+
+
+/* =========================================================
+   KONAMI CODE
+========================================================= */
+
+const konami = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+let konamiIndex = 0;
+
+document.addEventListener("keydown", event => {
+  if(event.key === konami[konamiIndex]){
+    konamiIndex++;
+    if(konamiIndex === konami.length){
+      konamiIndex = 0;
+      openModal("🥚 КОД АКТИВИРОВАН", "Ты нашёл секретный режим. Респект.");
+      confetti();
+    }
+  }else{
+    konamiIndex = 0;
+  }
+});
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function scrollToTools(){
+  document.getElementById("tools").scrollIntoView({ behavior:"smooth" });
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+newMeme();
+createSoundButtons();
+
+</script>
+
+</body>
+</html>
